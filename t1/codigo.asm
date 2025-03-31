@@ -4,7 +4,7 @@
     sub r3, r3  ; Zera R3 
     addi 3
     slr r0, r0
-    addi 4
+    addi 5
     add r2, r0
     sub r0, r0
     addi 4
@@ -17,6 +17,8 @@
 loop_R: sub r0, r0
     st r0, r1
     addi 1
+    ji 5
+meio_loop: ji loop_R
     add r1, r0   ; avança r1
     sub r0, r0   ; r0 = 0 
     add r0, r3   ; r0 = 10
@@ -24,7 +26,7 @@ loop_R: sub r0, r0
     sub r3, r3   ; r3 = 0
     add r3, r0   ; r3 = 9
     brzr r0, r2
-    ji loop_R
+    ji meio_loop
 ji end_R
 end_R: 
     ebreak
