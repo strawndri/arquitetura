@@ -4,7 +4,7 @@
     sub r3, r3  ; Zera R3 
     addi 3
     slr r0, r0
-    addi 2
+    addi 4
     add r2, r0
     sub r0, r0
     addi 4
