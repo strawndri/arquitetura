@@ -32,7 +32,7 @@ end_R:
     sub r0, r0
     addi 3
     slr r0, r0
-    addi 2
+    addi -2
     add r2, r0
     sub r0, r0
     addi 1
@@ -43,7 +43,7 @@ loop_A: st r0, r1
     addi 1
     ji meio_loop_A2
 meio_loop_A: ji loop_A
-meio_loop_A2:    add r1, r0   ; avança r1
+meio_loop_A2: add r1, r0   ; avança r1
     sub r0, r0   ; r0 = 0 
     add r0, r3   ; r0 = 10
     addi -1      ; r0 = 9
@@ -51,6 +51,4 @@ meio_loop_A2:    add r1, r0   ; avança r1
     add r3, r0   ; r3 = 9
     brzr r0, r2
     ji meio_loop_A
-ji end_A
-end_A:
-    ebreak
+ebreak
