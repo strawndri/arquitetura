@@ -29,20 +29,15 @@ meio_loop_R: ji loop_R
     ji meio_loop_R
 ji end_R
 end_R: 
-    sub r0, r0
     addi 3
     slr r0, r0
-    addi -1
+    addi 0
     add r2, r0
     sub r0, r0
-    addi 1
-    add r3, r0
-    sub r0, r0
-loop_A: st r0, r1
-    ji meio_loop_A2
-meio_loop_A: ji loop_A
-meio_loop_A2: add r1, r3 ; avança r1
-    add -1
-    brzr r0, r2
-    ji meio_loop_A
+    addi 5
+    addi 4
+    add r3, r0  ; r0 = r3 = 10
+    add r1, r0  ; r1 na posição 84
+loop_A:
+    
 ebreak
