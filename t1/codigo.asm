@@ -4,11 +4,12 @@
     sub r3, r3  ; Zera R3 
     addi 3
     slr r0, r0
-    addi 6
+    addi 7
     add r2, r0
     sub r0, r0
     addi 4
     slr r0, r0
+    addi 10
     add r1, r0  ; posição de r1 na memória
     sub r0, r0
     addi 5
@@ -41,7 +42,7 @@ end_R:
     sub r0, r0
 loop_A: sub r0, r0
     st r0, r1
-    addi 1
+    addi -1
     ji meio_loop_A2
 meio_loop_A: ji loop_A
 meio_loop_A2: add r1, r0   ; avança r1
