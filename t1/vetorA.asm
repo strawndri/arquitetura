@@ -11,17 +11,17 @@ addi -1     ; r0 = -1 (255)
 st r2, r0   ; guarda 2 na posição 255
 sub r2, r2  ; zera r2
 
-; -- posição vetor A -- 
-sub r0, r0  ; zera r0
-addi 4      ; r0 = 4
-slr r0, r0
-addi 5
-addi 5
-add r1, r0  ; r1 = 74
+sub r0, r0  ; zero r0
+addi 1      ; r0 = 1
+add r2, r0  ; r2 = 1
 
-sub r0, r0
-addi 1
-add r2, r0
+; -- posição dos vetores -- 
+sub r0, r0  ; zera r0
+addi -5     ; r0 = -5
+addi -5     ; r0 = -10
+addi -5     ; r0 = -15
+slr r0, r2  ; r0 = -30
+add r1, r0  ; r1 = -30 
 
 sub r0, r0  ; zera r0
 addi 5      ; r0 = 10
