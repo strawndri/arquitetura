@@ -1,34 +1,31 @@
 ; -- definindo nº da instrução do branch (loop vetor A e B) --
 addi 4      ; r0 = 4
-slr r0, r0  ; r0 = (4 * 2^4) = 66
-addi 2      ; r0 = 66
-add r2, r0  ; r2 = 66
+slr r0, r0  ; r0 = (4 * 2^4) = 64
+addi -1     ; r0 = 63
+add r2, r0  ; r2 = 63
 
 ; -- definindo nº da instrução do branch (loop vetor R) --
-add r1, r2  ; r1 = 66
-sub r0, r0  ; zera r0
-addi 1      ; r0 = 1
-srr r1, r0  ; r1 = (66 % 2^1) = 33
-addi 7      ; r0 = 9
-addi 1      ; r0 = 9
-add r1, r0  ; r1 = 33 + 9 = 42
-add r1, r2  ; r1 = 42 + 66 = 108
+addi -8     ; r0 = 57
+addi -8     ; r0 = 49
+addi -5     ; r0 = 42
+add r1, r0  ; r1 = 42
+add r1, r2  ; r1 = 42 + 63 = 105
 
 ; -- tamanho do vetor --
 sub r0, r0  ; zera r0
-addi 5      ; r0 = 10
 addi 5      ; r0 = 5
+addi 5      ; r0 = 10
 add r3, r0  ; r3 = 10
 sub r0, r0  ; zera r0
 
 ; -- guardando na memória valor de salto (loop vetores A e B) --
 addi 5      ; r0 = 5 
 slr r0, r0  ; r0 = (5 * 2^5) = 160
-st r2, r0   ; guarda 66 na posição 160
+st r2, r0   ; guarda 63 na posição 160
 
 ; -- guardando na memória valor de salto (loop R) --
 addi 1      ; r0 = 161
-st r1, r0   ; guarda 108 na posição 161
+st r1, r0   ; guarda 105 na posição 161
 
 ; -- guardando tamanho do vetor (para os loops A/B e R) --
 addi 1      ; r0 = 66
@@ -70,10 +67,10 @@ meio_loop_AB1:  sub r1, r0  ; retorna r1 em 10 posições
 
 meio_loop_AB5:  ji meio_loop_AB6
 
-meio_loop_AB2:  st r3, r0   ; guarda r0-- na posição 162
+meio_loop_AB2:  st r3, r0   ; guarda r3-- na posição 162
                 addi -2     ; r0 = 160
                 ld r2, r0   ; r2 = M[r0]
-                brzr r3, r2 ; se r0 = 0, vai para instrução 66
+                brzr r3, r2 ; se r3 = 0, vai para instrução 63
                 sub r0, r0  ; zera r0
                 sub r2, r2  ; zero r2
                 
@@ -108,7 +105,7 @@ loop_soma_R8:   ji loop_soma_R
 loop_soma_R1:   ld r2, r0   ; r2 = M[r0]
                 addi 2      ; r0 = 163
                 ld r3, r0   ; r3 = r0 (10)
-                brzr r3, r2 ; se r3 = 0, vai para instrução 108
+                brzr r3, r2 ; se r3 = 0, vai para instrução 105
                 sub r2, r2  ; zera r2
                 add r2, r0  ; r2 = 163
                 ji loop_soma_R2
