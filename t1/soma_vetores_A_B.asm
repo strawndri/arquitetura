@@ -5,8 +5,8 @@ addi -1     ; r0 = 63
 add r2, r0  ; r2 = 63
 
 ; -- definindo nº da instrução do branch (loop vetor R) --
-addi -8     ; r0 = 57
-addi -8     ; r0 = 49
+addi -8     ; r0 = 55
+addi -8     ; r0 = 47
 addi -5     ; r0 = 42
 add r1, r0  ; r1 = 42
 add r1, r2  ; r1 = 42 + 63 = 105
@@ -31,7 +31,7 @@ st r1, r0   ; guarda 105 na posição 161
 addi 1      ; r0 = 66
 st r3, r0   ; guarda 10 na posição 162
 addi 1      ; r0 = 67
-st r3, r0   ; guarda 9 na posição 163
+st r3, r0   ; guarda 10 na posição 163
 
 ; -- posição inicial do vetor -- 
 sub r1, r1  ; zera r1
@@ -50,7 +50,7 @@ loop_AB:        st r3, r1   ; M[r1] = r3 (A)
                 add r3, r0  ; r3 = r3 + 1
                 sub r0, r0  ; zera r0
                 addi 5      ; r0 = 5
-                addi 5      ; r0 = 5
+                addi 5      ; r0 = 10
                 add r1, r0  ; avança r1 em 10 posições
                 st r3, r1   ; M[r1] = r3 (B)
                 ji meio_loop_AB1
@@ -61,7 +61,7 @@ meio_loop_AB1:  sub r1, r0  ; retorna r1 em 10 posições
                 addi -5     ; r0 = 5
                 slr r0, r0  ; r0 = (5 * 2^5) = 160
                 addi 2      ; r0 = 162
-                ld r3, r0   ; r3 = r0 (10)
+                ld r3, r0   ; r3 = M[r0]
                 sub r3, r2  ; r3 = r3 - 1
                 ji meio_loop_AB2
 
@@ -88,9 +88,9 @@ meio_loop_AB3:  addi 1      ; r0 = 1
 
 ji end_loop_AB
 
-end_loop_AB:    sub r0, r0  ; zera R0
-                addi -5     ; r0 = 5
-                addi -4     ; r0 = 5
+end_loop_AB:    sub r0, r0  ; zera r0
+                addi -5     ; r0 = -5
+                addi -4     ; r0 = -9
                 add r1, r0  ; r1 = 168
 
 loop_soma_R:	sub r0, r0  ; zera r0
@@ -104,7 +104,7 @@ loop_soma_R8:   ji loop_soma_R
                 
 loop_soma_R1:   ld r2, r0   ; r2 = M[r0]
                 addi 2      ; r0 = 163
-                ld r3, r0   ; r3 = r0 (10)
+                ld r3, r0   ; r3 = M[r0] 
                 brzr r3, r2 ; se r3 = 0, vai para instrução 105
                 sub r2, r2  ; zera r2
                 add r2, r0  ; r2 = 163
