@@ -95,6 +95,7 @@
     <comp lib="0" loc="(1020,410)" name="Probe">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
+      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1040,550)" name="Tunnel">
       <a name="facing" val="south"/>
