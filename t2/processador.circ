@@ -343,8 +343,8 @@
       <a name="addrWidth" val="4"/>
       <a name="appearance" val="evolution"/>
       <a name="contents">addr/data: 4 10
-240 220 219 204 212 0 0 0
-10 90 110 190 108 148 188 1c8
+120 310 10c 102 309 0 0 0
+8 48 88 c8 108 148 188 1c8
 </a>
       <a name="dataWidth" val="10"/>
       <a name="label" val="MemoriaDeControle"/>
