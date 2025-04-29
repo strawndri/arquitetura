@@ -353,10 +353,7 @@
       <a name="labelfont" val="SansSerif bold 8"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(90,130)" name="Clock">
-      <a name="highDuration" val="2"/>
-      <a name="lowDuration" val="2"/>
-    </comp>
+    <comp lib="0" loc="(90,130)" name="Clock"/>
     <comp lib="1" loc="(190,390)" name="AND Gate">
       <a name="size" val="30"/>
     </comp>
