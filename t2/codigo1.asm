@@ -7,9 +7,9 @@ add r2, r0  ; r2 = 63
 ; -- definindo nº da instrução do branch (loop vetor R) --
 addi -8     ; r0 = 55
 addi -8     ; r0 = 47
-addi -5     ; r0 = 42
-add r1, r0  ; r1 = 42
-add r1, r2  ; r1 = 42 + 63 = 105
+addi -6     ; r0 = 41
+add r1, r0  ; r1 = 41
+add r1, r2  ; r1 = 41 + 63 = 104
 
 ; -- tamanho do vetor --
 sub r0, r0  ; zera r0
@@ -25,7 +25,7 @@ st r2, r0   ; guarda 63 na posição 160
 
 ; -- guardando na memória valor de salto (loop R) --
 addi 1      ; r0 = 161
-st r1, r0   ; guarda 105 na posição 161
+st r1, r0   ; guarda 104 na posição 161
 
 ; -- guardando tamanho do vetor (para os loops A/B e R) --
 addi 1      ; r0 = 66
@@ -105,7 +105,7 @@ loop_soma_R8:   ji loop_soma_R
 loop_soma_R1:   ld r2, r0   ; r2 = M[r0]
                 addi 2      ; r0 = 163
                 ld r3, r0   ; r3 = M[r0] 
-                brzr r3, r2 ; se r3 = 0, vai para instrução 105
+                brzr r3, r2 ; se r3 = 0, vai para instrução 104
                 sub r2, r2  ; zera r2
                 add r2, r0  ; r2 = 163
                 ji loop_soma_R2
@@ -139,4 +139,4 @@ loop_soma_R4:   sub r1, r0  ; r1 = 178 (vetor B)
                 add r1, r0  ; aumenta r1 em 1 posição
                 ji loop_soma_R5
                 
-end_soma_R: ebreak
+ji 0
