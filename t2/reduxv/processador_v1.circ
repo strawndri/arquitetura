@@ -282,6 +282,7 @@
     <comp lib="0" loc="(370,500)" name="Probe">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(440,260)" name="Tunnel">
       <a name="facing" val="south"/>
