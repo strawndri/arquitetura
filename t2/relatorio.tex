@@ -60,7 +60,7 @@
 
 \section{Introdução}
 
-Este relatório descreve a implementação de um processador monociclo, baseada na arquitetura 8-bits REDUX-V, bem como o desenvolvimento de um programa em Assembly que realiza a soma de dois vetores (A e B) e deposita o resultado em um vetor R.
+Este relatório descreve a implementação de um processador monociclo, baseado na arquitetura 8-bits REDUX-V, bem como o desenvolvimento de um programa em Assembly que realiza a soma de dois vetores (A e B) e armazena em um vetor R.
 
 O trabalho foi realizado a partir das seguintes etapas: criação de diagramas do projeto do caminho de dados e da Unidade Lógica e Aritmética (ULA), implementação do processador monociclo no software \textit{Logisim Evolution 3.9.0}, reescrita do Trabalho 1 com a inclusão de três novas instruções Assembly e adaptação do processador para contemplar essas novas instruções. 
 
@@ -70,12 +70,12 @@ O trabalho foi realizado a partir das seguintes etapas: criação de diagramas d
 
 O projeto do processador é composto pelos seguintes componentes: \textit{Program Counter (PC)}, Memória de Instruções e Dados (RAM), Memória de Controle (ROM), Banco de Registradores, ULA e auxiliares — como multiplexadores, somadores e extensores de sinal/zero.
 
-É importante salientar que, para uma execução adequada dos programas escritos para o Trabalho 1 e Trabalho 2, foi observado que tanto a Memória de Instruções e Dados, quanto o Banco de Registradores e o PC, deveriam utilizar o clock com \textit{1 tick}.
+Ademais, para que o Banco de Registradores e o PC realizassem uma comunicação coerente com a Memória de Instruções e Dados, os dois primeiros deveriam ter duração de \textit{2 ticks} com \textit{offset} de \textit{1 tick}, ao passo que a memória, \textit{1 tick} para duração e offset.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\linewidth]{datapath_processador.png}
-    \caption{Diagrama de caixas do processador.}
+    \caption{Diagrama de caixas do caminho de dados do processador.}
     \label{fig:enter-label}
 \end{figure}
 
@@ -84,9 +84,9 @@ O projeto do processador é composto pelos seguintes componentes: \textit{Progra
 Para a execução das instruções, foram definidos os seguintes sinais de controle:
 
 \begin{itemize}
-    \item \texttt{ImmU}: identifica se para o imediato é necessário considerar (ou não) o seu sinal;
+    \item \texttt{ImmU}: identifica se para o imediato é necessário considerar o seu sinal. Se sim, ele é extendido, caso contrário a extensão é com zero;
     \item \texttt{Inc}: ativo quando a instrução é a de incremento;
-    \item \texttt{WriteR0}: habilita exclusivamente a leitura e escrita no registrador R0;
+    \item \texttt{WriteR0}: habilita exclusivamente a leitura e escrita no registrador \texttt{R0};
     \item \texttt{MemWrite}: habilita escrita na memória;
     \item \texttt{MemToReg}: habilita escrita no registrador a partir de um dado da memória;
     \item \texttt{WriteReg}: habilita escrita no registrador; 
@@ -99,7 +99,9 @@ Para a execução das instruções, foram definidos os seguintes sinais de contr
 
 \subsection{ULA}
 
-Suas operações foram codificadas considerando os três bits menos significativos das instruções lógico-aritméticas da arquitetura, indo, portanto, de 000 (0) até 111 (7). Além da saída referente ao resultado da operação, há também o \texttt{Zero}, cujo propósito é indicar se o operando \texttt{A} é igual a zero.
+Suas operações foram codificadas considerando os três bits menos significativos das instruções lógico-aritméticas da arquitetura, indo, portanto, de \texttt{000} (0) até \texttt{111} (7). Além da saída referente ao resultado da operação, há também o \texttt{Zero}, cujo propósito é indicar se o operando \texttt{A} é igual a zero.
+
+Para todas as operações, foram utilizados os componentes prontos do simulador.
 
 A seguir, tem-se o diagrama do projeto interno da ULA:
 
@@ -121,17 +123,18 @@ A partir do código implementado no Trabalho 1, foram anotadas as seguintes difi
 Assim, para o Trabalho 2, foram idealizadas as seguintes instruções:
 
 \begin{itemize}
-    \item \texttt{inc}: incrementa em uma unidade o valor armazenado no registrador \texttt{RA};
+    \item \texttt{inc}: incrementa em 1 o valor armazenado no registrador \texttt{RA};
     \item \texttt{addiu}: seu papel é adicionar ao registrador \texttt{R0} um imediato sem sinal, contemplando os valores de 0 a 15;
-    \item \texttt{jr}: salto incondicional a partir de um vetor armazenado em um registrador.
+    \item \texttt{jr}: salto incondicional com base no valor presente em um registrador.
 \end{itemize}
 
 No que tange ao conjunto de instruções da arquitetura REDUX-V, pode-se apresentar as novas do seguinte modo:
 
 \begin{center}
+\scriptsize
 \renewcommand{\arraystretch}{1.1} % Espaçamento entre linhas
 \setlength{\tabcolsep}{2pt} % Espaçamento entre colunas
-\begin{tabular}{|c|c|p{2cm}|p{3cm}|}
+\begin{tabular}{|c|c|p{2cm}|p{2cm}|}
 \hline
 \textbf{Mnemônico} & \textbf{Opcode} & \textbf{Nome} & \textbf{Operação} \\ \hline
 \texttt{inc} & 0101 & Increment & \texttt{R[ra] = R[ra] + 1} \\ \hline
@@ -140,9 +143,9 @@ No que tange ao conjunto de instruções da arquitetura REDUX-V, pode-se apresen
 \end{tabular}
 \end{center}
 
-Após integrar as novas instruções ao projeto, houve uma mudança na lógica de execução: agora, o valor de salto do jump também é guardado na memória e, antes da instrução ser processada, ele é carregado em um registrador para que possa ser lido.
+Após integrar as novas instruções ao projeto, houve uma mudança na lógica de execução: agora, o valor de salto do \texttt{jump} também pode ser obtido a partir de um registrador (assim como \texttt{brzr}. Desse modo, não é mais necessário realizar saltos intermediários para alcançar a posição desejada.
 
-\subsection{Código}
+\subsection{Código em Assembly}
 
 \begin{lstlisting}
 ; -- tamanho do vetor --
@@ -261,11 +264,7 @@ loop_R:     inc r1       ; incrementa r1
 
             jr r2        ; volta p/ inst 58
 
-ji 0
+ji 0   ; finaliza programa
 \end{lstlisting}
-
-\section{Considerações finais}
-
-A partir da realização deste trabalho, foi possível aperfeiçoar os conhecimentos em Assembly e em projetos de processador implementados com monociclo. Dentre os obstáculos encontrados, é importante salientar a dificuldade em idealizar novas instruções e aplicá-las ao programa — devido às limitações da arquitetura —, tal qual deixar o clock externo do processador com \textit{tick 2} (especificação do trabalho que, infelizmente, não foi cumprida).
 
 \end{document}
