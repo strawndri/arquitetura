@@ -114,4 +114,4 @@ loop_R:     inc r1       ; incrementa r1
 
             jr r2        ; volta p/ inst 58
 
-ji 0
+ji 0   ; finaliza programa

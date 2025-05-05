@@ -139,4 +139,4 @@ loop_soma_R4:   sub r1, r0  ; r1 = 178 (vetor B)
                 add r1, r0  ; aumenta r1 em 1 posição
                 ji loop_soma_R5
                 
-ji 0
+ji 0   ; finaliza programa
