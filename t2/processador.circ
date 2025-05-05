@@ -262,7 +262,11 @@
       <a name="labelfont" val="SansSerif bold 8"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(400,830)" name="Clock"/>
+    <comp lib="0" loc="(400,830)" name="Clock">
+      <a name="highDuration" val="2"/>
+      <a name="lowDuration" val="2"/>
+      <a name="phaseOffset" val="1"/>
+    </comp>
     <comp lib="0" loc="(410,790)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="Resto"/>
