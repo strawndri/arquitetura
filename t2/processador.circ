@@ -224,10 +224,13 @@
       <a name="labelfont" val="SansSerif bold 8"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(1710,580)" name="Tunnel">
+    <comp lib="0" loc="(1720,550)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="B"/>
       <a name="labelfont" val="SansSerif bold 8"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(1720,570)" name="Constant">
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1720,740)" name="Probe">
@@ -238,19 +241,17 @@
       <a name="labelloc" val="east"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1740,650)" name="Tunnel">
-      <a name="label" val="ALUSrc"/>
-      <a name="labelfont" val="SansSerif bold 8"/>
-    </comp>
-    <comp lib="0" loc="(1750,500)" name="Constant">
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(1790,450)" name="Tunnel">
+    <comp lib="0" loc="(1740,530)" name="Tunnel">
+      <a name="facing" val="south"/>
       <a name="label" val="Inc"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(1820,580)" name="Tunnel">
-      <a name="facing" val="east"/>
+    <comp lib="0" loc="(1790,630)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="ALUSrc"/>
+      <a name="labelfont" val="SansSerif bold 8"/>
+    </comp>
+    <comp lib="0" loc="(1860,630)" name="Tunnel">
       <a name="label" val="ALUOp"/>
       <a name="labelfont" val="SansSerif bold 8"/>
       <a name="width" val="3"/>
@@ -414,11 +415,11 @@
     <comp lib="2" loc="(1640,740)" name="Multiplexer">
       <a name="width" val="8"/>
     </comp>
-    <comp lib="2" loc="(1750,590)" name="Multiplexer">
+    <comp lib="2" loc="(1760,560)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="2" loc="(1800,490)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
+    <comp lib="2" loc="(1810,600)" name="Multiplexer">
       <a name="width" val="8"/>
     </comp>
     <comp lib="2" loc="(560,530)" name="Multiplexer">
@@ -502,23 +503,24 @@
     <wire from="(1650,540)" to="(1690,540)"/>
     <wire from="(1650,560)" to="(1660,560)"/>
     <wire from="(1690,480)" to="(1690,540)"/>
-    <wire from="(1690,480)" to="(1770,480)"/>
-    <wire from="(1690,600)" to="(1690,740)"/>
-    <wire from="(1690,600)" to="(1720,600)"/>
+    <wire from="(1690,480)" to="(1820,480)"/>
+    <wire from="(1690,610)" to="(1690,740)"/>
+    <wire from="(1690,610)" to="(1780,610)"/>
     <wire from="(1690,740)" to="(1720,740)"/>
-    <wire from="(1710,580)" to="(1720,580)"/>
-    <wire from="(1730,610)" to="(1730,650)"/>
-    <wire from="(1730,650)" to="(1740,650)"/>
-    <wire from="(1750,500)" to="(1770,500)"/>
-    <wire from="(1750,590)" to="(1770,590)"/>
+    <wire from="(1720,550)" to="(1730,550)"/>
+    <wire from="(1720,570)" to="(1730,570)"/>
+    <wire from="(1740,530)" to="(1740,540)"/>
+    <wire from="(1760,560)" to="(1770,560)"/>
     <wire from="(1770,560)" to="(1770,590)"/>
-    <wire from="(1770,560)" to="(1840,560)"/>
-    <wire from="(1780,450)" to="(1780,470)"/>
-    <wire from="(1780,450)" to="(1790,450)"/>
-    <wire from="(1800,490)" to="(1820,490)"/>
-    <wire from="(1820,490)" to="(1820,540)"/>
+    <wire from="(1770,590)" to="(1780,590)"/>
+    <wire from="(1790,620)" to="(1790,630)"/>
+    <wire from="(1810,600)" to="(1820,600)"/>
+    <wire from="(1820,480)" to="(1820,540)"/>
     <wire from="(1820,540)" to="(1840,540)"/>
-    <wire from="(1820,580)" to="(1840,580)"/>
+    <wire from="(1820,560)" to="(1820,600)"/>
+    <wire from="(1820,560)" to="(1840,560)"/>
+    <wire from="(1840,580)" to="(1840,630)"/>
+    <wire from="(1840,630)" to="(1860,630)"/>
     <wire from="(2060,540)" to="(2080,540)"/>
     <wire from="(2060,560)" to="(2070,560)"/>
     <wire from="(2070,560)" to="(2070,810)"/>
@@ -948,11 +950,11 @@
     <comp lib="5" loc="(610,740)" name="LED"/>
     <comp lib="5" loc="(640,150)" name="LED"/>
     <comp lib="5" loc="(640,210)" name="LED"/>
-    <comp lib="8" loc="(578,771)" name="Text">
+    <comp lib="8" loc="(575,770)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A &lt;&lt; B"/>
     </comp>
-    <comp lib="8" loc="(578,851)" name="Text">
+    <comp lib="8" loc="(575,850)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A &gt;&gt; B"/>
     </comp>
@@ -960,27 +962,27 @@
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A XOR B"/>
     </comp>
-    <comp lib="8" loc="(580,549)" name="Text">
+    <comp lib="8" loc="(580,545)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A + B"/>
     </comp>
-    <comp lib="8" loc="(580,662)" name="Text">
+    <comp lib="8" loc="(580,660)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A - B"/>
     </comp>
-    <comp lib="8" loc="(587,377)" name="Text">
+    <comp lib="8" loc="(585,375)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A OR B"/>
     </comp>
-    <comp lib="8" loc="(590,286)" name="Text">
+    <comp lib="8" loc="(590,285)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="A AND B"/>
     </comp>
-    <comp lib="8" loc="(600,232)" name="Text">
+    <comp lib="8" loc="(600,230)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="NOT B"/>
     </comp>
-    <comp lib="8" loc="(613,125)" name="Text">
+    <comp lib="8" loc="(610,125)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="Comparador"/>
     </comp>
