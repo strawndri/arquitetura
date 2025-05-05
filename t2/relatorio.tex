@@ -60,21 +60,21 @@
 
 \section{Introdução}
 
-Este relatório descreve a implementação de um processador monociclo, baseada na arquitetura 8-bits REDUX-V, bem como do desenvolvimento de um programa em Assembly que realiza a soma de dois vetores (A e B) e deposita o resultado em um vetor R.
+Este relatório descreve a implementação de um processador monociclo, baseada na arquitetura 8-bits REDUX-V, bem como o desenvolvimento de um programa em Assembly que realiza a soma de dois vetores (A e B) e deposita o resultado em um vetor R.
 
-O trabalho foi realizado a partir das seguintes etapas: criação de diagramas do projeto do caminho de dados e da Unidade Lógica e Aritmética (ULA), implementação do processador monociclo no software Logisim Evolution 3.9.0, reescrita do Trabalho 1 com a inclusão de três novas instruções Assembly e adaptação do processador para contemplar essas novas instruções. 
+O trabalho foi realizado a partir das seguintes etapas: criação de diagramas do projeto do caminho de dados e da Unidade Lógica e Aritmética (ULA), implementação do processador monociclo no software \textit{Logisim Evolution 3.9.0}, reescrita do Trabalho 1 com a inclusão de três novas instruções Assembly e adaptação do processador para contemplar essas novas instruções. 
 
 \section{Projeto}
 
 \subsection{Processador}
 
-O projeto do processador é composto pelos seguintes componentes: Registrador "Program Counter (PC)", Memória de Instrução e de Dados (RAM), Memória de Controle (ROM), Banco de Registradores, Unidade Lógica e Aritmética (ULA) e auxiliares — como multiplexadores, somadores e extensores de sinal/zero.
+O projeto do processador é composto pelos seguintes componentes: \textit{Program Counter (PC)}, Memória de Instruções e Dados (RAM), Memória de Controle (ROM), Banco de Registradores, ULA e auxiliares — como multiplexadores, somadores e extensores de sinal/zero.
 
-É importante salientar que, para execução adequada do programa, foi observado que tanto a Memória de Instrução e Dados, quanto o Banco de Registradores e PC, deveriam utilizar o clock com 1 tick.
+É importante salientar que, para uma execução adequada dos programas escritos para o Trabalho 1 e Trabalho 2, foi observado que tanto a Memória de Instruções e Dados, quanto o Banco de Registradores e o PC, deveriam utilizar o clock com \textit{1 tick}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{datapath_processador.png}
+    \includegraphics[width=0.9\linewidth]{datapath_processador.png}
     \caption{Diagrama de caixas do processador.}
     \label{fig:enter-label}
 \end{figure}
@@ -85,13 +85,13 @@ Para a execução das instruções, foram definidos os seguintes sinais de contr
 
 \begin{itemize}
     \item \texttt{ImmU}: identifica se para o imediato é necessário considerar (ou não) o seu sinal;
-    \item \texttt{Inc}: ativo quando a instrução é a de incrementar;
+    \item \texttt{Inc}: ativo quando a instrução é a de incremento;
     \item \texttt{WriteR0}: habilita exclusivamente a leitura e escrita no registrador R0;
     \item \texttt{MemWrite}: habilita escrita na memória;
     \item \texttt{MemToReg}: habilita escrita no registrador a partir de um dado da memória;
-    \item \texttt{WriteReg}: habilita escrita do registrador; 
+    \item \texttt{WriteReg}: habilita escrita no registrador; 
     \item \texttt{Branch}: indica se a instrução processada é um salto condicional;
-    \item \texttt{Jump}: indica que a instrução processada é um salto incondicional;
+    \item \texttt{Jump}: indica se a instrução processada é um salto incondicional;
     \item \texttt{JI}: indica se o salto incondicional depende de um valor imediato;
     \item \texttt{ALUOp}: operação a ser realizada pela ULA; 
     \item \texttt{ALUSrc}: ULA deve receber um operando imediato ou proveniente de um registrador.
@@ -105,14 +105,14 @@ A seguir, tem-se o diagrama do projeto interno da ULA:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{projeto_ula.png}
+    \includegraphics[width=0.9\linewidth]{projeto_ula.png}
     \caption{Diagrama de caixas da ULA.}
     \label{fig:enter-label}
 \end{figure}
 
 \section{Programa}
 
-De forma resumida, a sequência lógica utilizada para resolver o problema da soma dos vetores foi, a princípio, guardar em endereços específicos da memória o valor de salto da instrução brzr, tal qual o tamanho dos vetores. Em endereços seguintes, seriam guardados os valores dos vetores A, B e R.
+De forma resumida, a sequência lógica utilizada para resolver o problema da soma dos vetores foi, a princípio, guardar em endereços específicos da memória o valor de salto da instrução \texttt{brzr}, tal qual o tamanho dos vetores. Em endereços seguintes, seriam guardados os valores dos vetores \texttt{A}, \texttt{B} e \texttt{R}. Os vetores \texttt{A} e \texttt{B} eram preenchidos simultaneamente, de modo que o laço de repetição ia de um para o outro adicionando os novos valores. O resultado da soma seguia a mesma proposta.
 
 \subsection{Novas instruções}
 
@@ -139,6 +139,8 @@ No que tange ao conjunto de instruções da arquitetura REDUX-V, pode-se apresen
 \texttt{jr} & 0111 & Jump Register & \texttt{PC = R[rb]} \\ \hline
 \end{tabular}
 \end{center}
+
+Após integrar as novas instruções ao projeto, houve uma mudança na lógica de execução: agora, o valor de salto do jump também é guardado na memória e, antes da instrução ser processada, ele é carregado em um registrador para que possa ser lido.
 
 \subsection{Código}
 
@@ -264,6 +266,6 @@ ji 0
 
 \section{Considerações finais}
 
-A partir da realização deste trabalho, foi possível aperfeiçoar os conhecimentos em Assembly e em projetos de processador implementados com monociclo. Dentre os obstáculos encontrados, é importante salientar a dificuldade em idealizar novas instruções e aplicá-las ao programa — devido às limitações da arquitetura —, tal qual deixar o clock externo do processador com tick 2 (especificação do trabalho que, infelizmente, não foi cumprida).
+A partir da realização deste trabalho, foi possível aperfeiçoar os conhecimentos em Assembly e em projetos de processador implementados com monociclo. Dentre os obstáculos encontrados, é importante salientar a dificuldade em idealizar novas instruções e aplicá-las ao programa — devido às limitações da arquitetura —, tal qual deixar o clock externo do processador com \textit{tick 2} (especificação do trabalho que, infelizmente, não foi cumprida).
 
 \end{document}
