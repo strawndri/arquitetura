@@ -1,5 +1,6 @@
 # 💾 | Arquitetura de Computadores
 
+![Projeto](https://img.shields.io/badge/Projeto-Universidade-85d9f2.svg)
 ![Status](https://img.shields.io/badge/Status-Concluído-abf285.svg)
 
 ## Índice
